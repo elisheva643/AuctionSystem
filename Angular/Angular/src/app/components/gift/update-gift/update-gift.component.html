@@ -1,0 +1,89 @@
+<div class="update-gift-form">
+  <h3>עדכון מתנה</h3>
+
+  <div>
+    <label for="giftName">שם המתנה:</label>
+    <input 
+      id="giftName" 
+      name="uGiftName"
+      type="text" 
+      [(ngModel)]="gift.name" 
+      #nameRef="ngModel"
+      required
+      minlength="2"
+      placeholder="הקלידי שם" 
+    />
+    @if (nameRef.invalid && nameRef.touched) {
+      <div class="error">
+        @if (nameRef.errors?.['required']) { <small>חובה להזין שם.</small> }
+        @if (nameRef.errors?.['minlength']) { <small>לפחות 2 תווים.</small> }
+      </div>
+    }
+  </div>
+
+  <div>
+    <label for="giftPrice">מחיר:</label>
+    <input 
+      id="giftPrice" 
+      name="uGiftPrice"
+      type="number" 
+      [(ngModel)]="gift.price" 
+      #priceRef="ngModel"
+      required
+      min="1"
+      placeholder="הקלידי מחיר" 
+    />
+    @if (priceRef.invalid && priceRef.touched) {
+      <div class="error">
+        @if (priceRef.errors?.['required']) { <small>חובה להזין מחיר.</small> }
+        @if (priceRef.errors?.['min']) { <small>המחיר חייב להיות גבוה מ-0.</small> }
+      </div>
+    }
+  </div>
+
+  <div>
+    <label for="giftDescription">תיאור:</label>
+    <input
+  name="uDescription"
+  [(ngModel)]="gift.description"
+  #descRef="ngModel"
+  required
+  minlength="5"
+/>
+
+@if (descRef.invalid && descRef.touched) {
+  <div class="error">
+    <small>תיאור חייב להכיל לפחות 5 תווים.</small>
+  </div>
+}
+  </div>
+  <div>
+    <label>קטגוריה:</label>
+<input
+  name="uCategory"
+  [(ngModel)]="gift.category"
+  #categoryRef="ngModel"
+  required
+/>
+
+@if (categoryRef.invalid && categoryRef.touched) {
+  <div class="error">
+    <small>חובה להזין קטגוריה.</small>
+  </div>
+}  </div>
+
+  <div>
+    <label>URL תמונה:</label>
+    <input name="uImage" [(ngModel)]="gift.imageUrl" />
+  </div>
+
+  <div class="button-group">
+    <button 
+      (click)="updateGift()" 
+      [disabled]="nameRef.invalid || priceRef.invalid || descRef.invalid || categoryRef.invalid ">
+      עדכן מתנה
+    </button>
+    
+    <button type="button" (click)="cancel.emit()">ביטול</button>
+  </div>
+</div>

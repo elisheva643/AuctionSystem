@@ -1,0 +1,120 @@
+.page-container {
+  min-height: 100vh;
+  padding: 48px 6% 80px;
+  direction: rtl;
+  background: linear-gradient(180deg, #f8fafc 0%, #f6f7fb 100%);
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  color: var(--text-dark);
+  margin-bottom: 32px;
+  font-weight: 700;
+}
+
+.donation-form {
+  max-width: 700px;
+  margin: 0 auto;
+  background: white;
+  padding: 40px;
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.section label {
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: 1rem;
+}
+
+.mode-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.mode-buttons button {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid var(--border-color);
+  background: white;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.mode-buttons button:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.inline-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: rgba(11, 114, 133, 0.04);
+  padding: 20px;
+  border-radius: 14px;
+}
+
+.inline-form input {
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  font-size: 1rem;
+}
+
+.inline-form button,
+.donation-form > button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.inline-form .link-button {
+  background: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(11, 114, 133, 0.2);
+}
+
+.inline-form .link-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px rgba(11, 114, 133, 0.25);
+}
+
+.donation-form > button {
+  background: var(--accent-color);
+  color: white;
+  width: 100%;
+  box-shadow: 0 10px 20px rgba(249, 115, 22, 0.2);
+}
+
+.donation-form > button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px rgba(249, 115, 22, 0.25);
+}
+
+.donation-form > button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+select {
+  padding: 12px 14px !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 12px !important;
+  font-size: 1rem !important;
+}

@@ -1,0 +1,63 @@
+<div class="home-container">
+  <!-- <section class="hero">
+    <h1>🎁 ברוכים הבאים למכירה הסינית שלנו</h1>
+    <p>קנו כרטיסים בהנחה וזכו במתנות מדהימות!</p>
+  </section> -->
+
+  <section *ngIf="!isUserLoggedIn" class="auth-prompt">
+    <h2>התחילי עכשיו</h2>
+    <p>היכנס לחשבון שלך או הירשם כדי להתחיל לקנות כרטיסים.</p>
+    <div class="button-group">
+      <a routerLink="/login" class="btn btn-primary">כניסה</a>
+      <a routerLink="/register" class="btn btn-secondary">הרשמה</a>
+    </div>
+  </section>
+
+  <section *ngIf="isUserLoggedIn" class="quick-links">
+    <h2>תפריט מהיר</h2>
+    <div class="links-grid">
+      <a routerLink="/gifts" class="link-card">
+        <h3>🎉 רשימת מתנות</h3>
+        <p>צפה בכל המתנות הזמינות</p>
+      </a>
+      <!-- <a routerLink="/add-purchase" class="link-card">
+        <h3>🛍️ קנה כרטיסים</h3>
+        <p>הוסף כרטיסים לעגלה שלך</p>
+      </a> -->
+      <a routerLink="/cart" class="link-card">
+        <h3>🛒 העגלה שלי</h3>
+        <p>צפה והשלם רכישה</p>
+      </a>
+      <a routerLink="/donors" class="link-card">
+        <h3>🤝 תורמים</h3>
+        <p>תוכנית תורמים ותרומות</p>
+      </a>
+    </div>
+  </section>
+
+  <section *ngIf="isAdmin" class="admin-links">
+    <h2>⚙️ כלים לניהול</h2>
+    <div class="admin-grid">
+   
+      
+      <a routerLink="/add-donation" class="admin-card">
+        <h3>📊 הקצה תרומה</h3>
+        <p>קשור מתנה לתורם וכמות</p>
+      </a>
+      <a routerLink="/winners" class="admin-card">
+        <h3>🎉 ההגרלה</h3>
+        <p>בצע הגרלה בחרו זוכים</p>
+      </a>
+      <a routerLink="/revenue" class="admin-card">
+        <h3>📈 דוח הכנסות</h3>
+        <p>צפי בהכנסות מצטברות</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="info">
+    <h2>על המכירה הסינית</h2>
+    <p>מכירה סינית היא מנגנון הגרלה חיזוי בו אנשים קונים כרטיסים, וזוכים במתנות שנקבעו על ידי הגרלה אקראית.</p>
+    <p>כל הכנסה מהמכירה תומכת בתכנית התרומות שלנו.</p>
+  </section>
+</div>

@@ -1,0 +1,69 @@
+<div class="register-form">
+  <h3>הרשמה</h3>
+
+  <div>
+    <label for="userName">שם משתמש:</label>
+    <input 
+      id="userName" 
+      name="name"
+      type="text" 
+      [(ngModel)]="registerData.name" 
+      #nameRef="ngModel"
+      required
+      minlength="2"
+      placeholder="הקלידי שם" 
+    />
+    @if (nameRef.invalid && nameRef.touched) {
+      <div class="error">
+        @if (nameRef.errors?.['required']) { <small>חובה להזין שם.</small> }
+        @if (nameRef.errors?.['minlength']) { <small>השם חייב להכיל לפחות 2 תווים.</small> }
+      </div>
+    }
+  </div>
+
+  <div>
+    <label for="userEmail">אימייל:</label>
+    <input 
+      id="userEmail" 
+      name="email"
+      type="email" 
+      [(ngModel)]="registerData.email" 
+      #emailRef="ngModel"
+      required 
+      email
+      placeholder="הקלידי אימייל" 
+    />
+    @if (emailRef.invalid && emailRef.touched) {
+      <div class="error">
+        @if (emailRef.errors?.['required']) { <small>חובה להזין אימייל.</small> }
+        @if (emailRef.errors?.['email']) { <small>כתובת המייל אינה תקינה.</small> }
+      </div>
+    }
+  </div>
+
+  <div>
+    <label for="userPassword">סיסמה:</label>
+    <input 
+      id="userPassword" 
+      name="password"
+      type="password" 
+      [(ngModel)]="registerData.password" 
+      #passRef="ngModel"
+      required 
+      minlength="6"
+      placeholder="הקלידי סיסמה" 
+    />
+    @if (passRef.invalid && passRef.touched) {
+      <div class="error">
+        @if (passRef.errors?.['required']) { <small>חובה להזין סיסמה.</small> }
+        @if (passRef.errors?.['minlength']) { <small>הסיסמה חייבת להיות לפחות 6 תווים.</small> }
+      </div>
+    }
+  </div>
+
+  <button 
+    (click)="register()" 
+    [disabled]="nameRef.invalid || emailRef.invalid || passRef.invalid">
+    הרשם
+  </button>
+</div>

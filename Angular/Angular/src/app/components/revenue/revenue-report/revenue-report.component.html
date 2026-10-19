@@ -1,0 +1,14 @@
+<div class="revenue-container">
+  <h2>📊 דוח הכנסות מכירה סינית</h2>
+
+  @if (isLoading) {
+    <p>טוען נתונים...</p>
+  } @else {
+    <div class="revenue-card">
+      <h3>סך הכנסות מצטבר:</h3>
+      <div class="amount">{{ totalRevenue | currency:'ILS':'symbol':'1.0-2' }}</div>
+    </div>
+  }
+
+  <button (click)="ngOnInit()" class="refresh-btn">🔄 רענן נתונים</button>
+</div>

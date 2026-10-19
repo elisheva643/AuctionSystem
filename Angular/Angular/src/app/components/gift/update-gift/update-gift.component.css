@@ -1,0 +1,72 @@
+.update-gift-form {
+  background: white;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  border-radius: 14px;
+  padding: 24px;
+  margin-top: 20px;
+  max-width: 450px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.update-gift-form > div {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.update-gift-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-dark);
+}
+
+.update-gift-form input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.update-gift-form input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(11, 114, 133, 0.1);
+}
+
+.update-gift-form button {
+  padding: 10px 16px;
+  margin-right: 8px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.update-gift-form button:first-of-type {
+  background-color: var(--primary-color);
+  color: white;
+  box-shadow: 0 8px 16px rgba(11, 114, 133, 0.1);
+}
+
+.update-gift-form button:first-of-type:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 20px rgba(11, 114, 133, 0.15);
+}
+
+.update-gift-form button:last-of-type {
+  background-color: #ef4444;
+  color: white;
+  box-shadow: 0 8px 16px rgba(239, 68, 68, 0.1);
+}
+
+.update-gift-form button:last-of-type:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 20px rgba(239, 68, 68, 0.15);
+}

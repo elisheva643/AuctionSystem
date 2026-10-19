@@ -1,0 +1,35 @@
+<div class="winners-container">
+  <div class="winners-header">
+    <div class="title-section">
+      <h1>רשימת זוכים 🎉</h1>
+      <p>כאן מופיעים כל המאושרים שזכו בהגרלה שלנו</p>
+    </div>
+    <ng-container *ngIf="isAdmin">
+      <button class="draw-btn reset-style" (click)="reset()" *ngIf="winners.length > 0">
+        🗑️ ביטול הגרלה
+      </button>
+      
+      <button class="draw-btn" (click)="draw()">
+        <span class="icon">🎲</span> בצע הגרלה חדשה
+      </button>
+    </ng-container>
+  </div>
+
+  <div class="winners-grid">
+    <div *ngFor="let winner of winners" class="winner-card">
+      <div class="card-icon">🏆</div>
+      <div class="winner-info">
+        <span class="gift-label">הפרס:</span>
+        <h3 class="gift-name">{{ winner.giftName }}</h3>
+        <div class="divider"></div>
+        <span class="winner-label">הזוכה המאושר/ת:</span>
+        <h2 class="user-name">{{ winner.userName }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="winners.length === 0" class="no-winners">
+    <img src="assets/empty-box.png" alt="אין זוכים" class="empty-img">
+    <p>טרם בוצעה הגרלה. לחצי על הכפתור למעלה כדי להתחיל!</p>
+  </div>
+</div>

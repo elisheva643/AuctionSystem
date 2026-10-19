@@ -1,0 +1,59 @@
+<div class="login-page-container">
+  <div class="login-card">
+    <div class="login-header">
+      <img src="assets/rr.jpg" alt="Logo" class="login-logo">
+      <h3>ברוכה הבאה!</h3>
+      <p>הזינו פרטים כדי להתחבר לחשבון שלכם</p>
+    </div>
+
+    <form class="login-form">
+      <div class="input-group">
+        <label for="userEmail">אימייל</label>
+        <input id="userEmail" name="email" type="email" [(ngModel)]="loginData.email" #emailRef="ngModel" required email
+          placeholder="example@mail.com" />
+
+        @if (emailRef.invalid && emailRef.touched) {
+        <div class="error-msg">
+          @if (emailRef.errors?.['required']) {
+          <small>חובה להזין כתובת אימייל.</small>
+          }
+          @if (emailRef.errors?.['email']) {
+          <small>כתובת האימייל אינה תקינה.</small>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="input-group">
+        <label for="userPassword">סיסמה</label>
+        <div class="password-wrapper">
+          <input id="userPassword" name="password" [type]="isPasswordVisible ? 'text' : 'password'"
+            [(ngModel)]="loginData.password" #passRef="ngModel" required minlength="6" placeholder="הקלידי סיסמה" />
+          <button type="button" class="toggle-btn" (click)="togglePassword()">
+            {{ isPasswordVisible ? '👁️' : '🔒' }}
+          </button>
+        </div>
+
+        @if (passRef.invalid && passRef.touched) {
+        <div class="error-msg">
+          @if (passRef.errors?.['required']) {
+          <small>חובה להזין סיסמה.</small>
+          }
+          @if (passRef.errors?.['minlength']) {
+          <small>הסיסמה חייבת להכיל לפחות 6 תווים.</small>
+          }
+        </div>
+        }
+      </div>
+
+      <button class="submit-btn" (click)="login()" [disabled]="emailRef.invalid || passRef.invalid">
+        התחברות למערכת
+      </button>
+
+      <div class="login-footer">
+        <span>עוד לא רשומה?</span>
+        <a routerLink="/register">צרי חשבון חדש</a>
+      </div>
+    </form>
+  </div>
+</div>

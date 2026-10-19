@@ -1,0 +1,234 @@
+:host {
+  --primary-color: #0b7285;
+  --accent-color: #f97316;
+  --text-dark: #1f2933;
+  --bg-light: #ffffff;
+  font-family: 'Heebo', 'Assistant', 'Segoe UI', sans-serif;
+}
+
+.page-container {
+  min-height: 100vh;
+  padding: 48px 6% 80px;
+  direction: rtl;
+  background-color: rgba(252, 250, 248, 0.96); /* צבע רקע חם עדין כמו בתמונה */
+}
+
+.list-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.list-header h1 {
+  font-size: clamp(2rem, 3vw, 3rem);
+  color: var(--text-dark);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 auto 44px;
+}
+
+.filter-btn {
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text-dark);
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(6px);
+}
+
+.filter-btn:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  transform: translateY(-1px);
+}
+
+.filter-btn.active {
+  --accent-color: #f97316;
+  background: var(--accent-color);
+  border-color: var(--primary-color);
+  color: #ffffff;
+}
+
+.gifts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 36px;
+}
+
+/* כרטיסייה במראה נקי */
+.premium-card {
+  background: var(--bg-light);
+  border-radius: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+  animation: card-fade-in 0.6s ease both;
+}
+
+.premium-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 28px 60px rgba(15, 23, 42, 0.12);
+}
+
+.image-wrapper {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.main-img.is-fallback {
+  object-fit: contain;
+  padding: 16px;
+  background: #ffffff;
+}
+
+.card-content {
+  padding: 18px 20px 24px;
+}
+
+.category-tag {
+  display: inline-block;
+  color: #475569;
+  font-size: 0.78rem;
+  background: rgba(15, 118, 110, 0.1);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+
+.product-title {
+  font-size: 1.2rem;
+  margin: 4px 0 6px;
+}
+
+.price-label {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 18px;
+  color: #111827;
+}
+
+/* שורת כפתורים */
+.action-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.quantity-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #f1f5f9;
+  border-radius: 999px;
+  padding: 6px 10px;
+}
+
+.quantity-box button {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.quantity-box button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.quantity-box button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.cart-btn {
+  background: var(--accent-color);
+  color: #ffffff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 10px 20px rgba(249, 115, 22, 0.2);
+}
+
+.cart-btn:disabled {
+  opacity: 0.4;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.cart-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 25px rgba(249, 115, 22, 0.25);
+}
+
+.admin-overlay {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+}
+
+.edit-dot,
+.delete-dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 16px rgba(15, 23, 42, 0.1);
+  cursor: pointer;
+}
+
+.delete-dot {
+  color: #ef4444;
+}
+
+.empty-state {
+  text-align: center;
+  margin-top: 40px;
+  color: #475569;
+  font-weight: 600;
+}
+
+@keyframes card-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

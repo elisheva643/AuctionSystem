@@ -1,0 +1,81 @@
+<div class="purchases-container">
+  <div class="header">
+    <h1>📊 ניהול רוכשות</h1>
+    <button (click)="refresh()" class="refresh-btn">🔄 רענן</button>
+  </div>
+
+  <div class="filters">
+    <label>
+      <input type="radio" value="all" [(ngModel)]="filterStatus" (change)="applyFilter()">
+      הכל ({{ purchases.length }})
+    </label>
+    <label>
+      <input type="radio" value="draft" [(ngModel)]="filterStatus" (change)="applyFilter()">
+      טיוטה ({{ getDraftCount() }})
+    </label>
+    <label>
+      <input type="radio" value="confirmed" [(ngModel)]="filterStatus" (change)="applyFilter()">
+      מאושרות ({{ getConfirmedCount() }})
+    </label>
+  </div>
+
+  <div *ngIf="isLoading" class="loading">
+    טוען נתונים...
+  </div>
+
+  <div *ngIf="!isLoading && filteredPurchases.length === 0" class="no-data">
+    אין רוכשות להצגה
+  </div>
+
+  <div *ngIf="!isLoading && filteredPurchases.length > 0" class="table-wrapper">
+    <table class="purchases-table">
+      <thead>
+        <tr>
+          <th>קוד רכישה</th>
+          <th>קוד משתמש</th>
+          <th>שם מתנה</th>
+          <th>כמות</th>
+          <th>עלות כרטיס</th>
+          <th>סה״כ</th>
+          <th>סטטוס</th>
+          <th>פעולות</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let purchase of filteredPurchases" [class.draft]="purchase.isDraft">
+          <td>#{{ purchase.id }}</td>
+          <td>{{ purchase.userId }}</td>
+          <td>{{ purchase.giftName || `Gift #${purchase.giftId}` }}</td>
+          <td>{{ purchase.quantity }}</td>
+          <td>{{ purchase.giftPrice }} ש"ח</td>
+          <td>{{ purchase.quantity * (purchase.giftPrice || 0) }} ש"ח</td>
+          <td>
+            <span [class.badge-draft]="purchase.isDraft" [class.badge-confirmed]="!purchase.isDraft">
+              {{ purchase.isDraft ? 'טיוטה' : 'מאושר' }}
+            </span>
+          </td>
+          <!-- <td class="actions">
+            <button (click)="toggleStatus(purchase)" [class.btn-confirm]="purchase.isDraft">
+              {{ purchase.isDraft ? '✓ אשר' : '✗ חזור לטיוטה' }}
+            </button> -->
+            <button (click)="deletePurchase(purchase.id)" [disabled]="!purchase.isDraft"
+               class="delete-btn">
+              <span *ngIf="purchase.isDraft">❌ מחק</span>
+            </button>
+          <!-- </td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="!isLoading && filteredPurchases.length > 0" class="summary">
+    <div class="summary-card">
+      <h3>סה״כ רוכשות</h3>
+      <div class="value">{{ getTotalPurchases() }}</div>
+    </div>
+    <div class="summary-card">
+      <h3>סה״כ נתונים לעיבוד</h3>
+      <div class="value">{{ getTotalRevenue() }} ש"ח</div>
+    </div>
+  </div>
+</div>

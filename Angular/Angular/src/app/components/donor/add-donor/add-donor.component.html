@@ -1,0 +1,49 @@
+<div class="add-donor-form">
+  <h3>הוספת תורם חדש</h3>
+  
+  <div>
+    <label for="name">שם התורם:</label>
+    <input
+      id="name"
+      name="name"
+      type="text"
+      [(ngModel)]="name"
+      #nameRef="ngModel"
+      required
+      minlength="2"
+      placeholder="הקלד שם"
+    />
+    @if (nameRef.invalid && nameRef.touched) {
+      <div class="error">
+        @if (nameRef.errors?.['required']) { <small>חובה להזין שם תורם.</small> }
+        @if (nameRef.errors?.['minlength']) { <small>השם חייב להכיל לפחות 2 תווים.</small> }
+      </div>
+    }
+  </div>
+
+  <div>
+    <label for="email">מייל:</label>
+    <input
+      id="email"
+      name="email"
+      type="email"
+      [(ngModel)]="email"
+      #emailRef="ngModel"
+      required
+      email 
+      placeholder="הקלד כתובת מייל"
+    />
+    @if (emailRef.invalid && emailRef.touched) {
+      <div class="error">
+        @if (emailRef.errors?.['required']) { <small>חובה להזין כתובת מייל.</small> }
+        @if (emailRef.errors?.['email']) { <small>כתובת המייל אינה תקינה.</small> }
+      </div>
+    }
+  </div>
+
+  <button 
+    (click)="addDonor()" 
+    [disabled]="nameRef.invalid || emailRef.invalid">
+    הוסף תורם
+  </button>
+</div>

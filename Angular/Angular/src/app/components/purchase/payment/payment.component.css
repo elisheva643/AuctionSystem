@@ -1,0 +1,284 @@
+.payment-container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f8fafc 0%, #f6f7fb 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 6%;
+  direction: rtl;
+}
+
+.payment-card {
+  background: white;
+  border-radius: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  padding: 40px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+}
+
+.payment-card h1 {
+  text-align: center;
+  color: var(--text-dark);
+  margin-bottom: 28px;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.amount-display {
+  text-align: center;
+  background: linear-gradient(135deg, var(--primary-color) 0%, #0a4f61 100%);
+  color: white;
+  padding: 24px;
+  border-radius: 14px;
+  margin-bottom: 28px;
+}
+
+.amount-display h2 {
+  font-size: 1rem;
+  margin: 0 0 8px 0;
+  opacity: 0.9;
+}
+
+.amount {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.payment-form {
+  margin-top: 28px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(11, 114, 133, 0.1);
+}
+
+.hint {
+  display: block;
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.expiry-inputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.expiry-inputs input {
+  width: 60px;
+  text-align: center;
+}
+
+.expiry-inputs span {
+  font-size: 1.2rem;
+  color: #6b7280;
+}
+
+.security-note {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(249, 115, 22, 0.08);
+  border: 1px solid rgba(249, 115, 22, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 20px 0;
+}
+
+.security-note span {
+  font-size: 1.5rem;
+}
+
+.security-note p {
+  margin: 0;
+  color: var(--text-dark);
+  font-size: 0.9rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.pay-btn,
+.cancel-btn,
+.retry-btn {
+  flex: 1;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pay-btn {
+  background: var(--accent-color);
+  color: white;
+  box-shadow: 0 10px 20px rgba(249, 115, 22, 0.2);
+}
+
+.pay-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px rgba(249, 115, 22, 0.25);
+}
+
+.pay-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.cancel-btn {
+  background: rgba(15, 23, 42, 0.08);
+  color: var(--text-dark);
+  border: 1px solid var(--border-color);
+}
+
+.cancel-btn:hover {
+  background: rgba(15, 23, 42, 0.12);
+}
+
+.processing {
+  text-align: center;
+  padding: 48px 0;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid #e5e7eb;
+  border-top: 5px solid var(--primary-color);
+  border-radius: 50%;
+  margin: 0 auto 24px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.processing h3 {
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.processing p {
+  color: #6b7280;
+}
+
+.success,
+.error {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.success-icon,
+.error-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.success h2 {
+  color: #4caf50;
+  margin-bottom: 1rem;
+}
+
+.success p {
+  color: #333;
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+}
+
+.redirect-msg {
+  color: #666;
+  font-size: 0.95rem;
+  margin-top: 1.5rem;
+}
+
+.error h3 {
+  color: #f44336;
+  margin-bottom: 1rem;
+}
+
+.error p {
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.retry-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.retry-btn:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .payment-container {
+    padding: 1rem;
+  }
+
+  .payment-card {
+    padding: 1.5rem;
+  }
+
+  .payment-card h1 {
+    font-size: 1.5rem;
+  }
+
+  .amount {
+    font-size: 2rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,113 @@
+.winners-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  direction: rtl;
+}
+
+/* כותרת הדף */
+.winners-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  border-bottom: 2px solid #f0e6db;
+  padding-bottom: 20px;
+}
+
+.title-section h1 {
+  color: #333;
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+.title-section p {
+  color: #666;
+  margin: 5px 0 0;
+}
+
+/* כפתור הגרלה מעוצב */
+.draw-btn {
+  background: linear-gradient(135deg, #e31e24 0%, #c0171b 100%);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(227, 30, 36, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.draw-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(227, 30, 36, 0.4);
+}
+
+/* גריד של כרטיסי זוכים */
+.winners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* כרטיס זוכה אישי */
+.winner-card {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  border: 1px solid #f0e6db;
+  transition: transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.winner-card:hover {
+  transform: translateY(-5px);
+  border-color: #e31e24;
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.gift-label, .winner-label {
+  font-size: 0.85rem;
+  color: #999;
+  text-transform: uppercase;
+  display: block;
+}
+
+.gift-name {
+  color: #e31e24;
+  margin: 5px 0;
+  font-size: 1.3rem;
+}
+
+.divider {
+  height: 2px;
+  background: #fdfaf7;
+  margin: 15px auto;
+  width: 50%;
+}
+
+.user-name {
+  color: #333;
+  margin: 5px 0;
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+/* עיצוב למצב ריק */
+.no-winners {
+  text-align: center;
+  padding: 50px;
+  color: #999;
+}

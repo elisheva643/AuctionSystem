@@ -1,0 +1,53 @@
+<div class="update-donor-form">
+  <h3>עדכון פרטי תורם</h3>
+
+  <div>
+    <label for="donorName">שם התורם:</label>
+    <input 
+      id="donorName" 
+      name="uDonorName"
+      type="text" 
+      [(ngModel)]="donor.name" 
+      #nameRef="ngModel"
+      required
+      minlength="2"
+      placeholder="הקלידי שם" 
+    />
+    @if (nameRef.invalid && nameRef.touched) {
+      <div class="error">
+        @if (nameRef.errors?.['required']) { <small>חובה להזין שם תורם.</small> }
+        @if (nameRef.errors?.['minlength']) { <small>השם חייב להכיל לפחות 2 תווים.</small> }
+      </div>
+    }
+  </div>
+
+  <div>
+    <label for="donorEmail">אימייל:</label>
+    <input 
+      id="donorEmail" 
+      name="uDonorEmail"
+      type="email" 
+      [(ngModel)]="donor.email" 
+      #emailRef="ngModel"
+      required
+      email
+      placeholder="הקלידי אימייל" 
+    />
+    @if (emailRef.invalid && emailRef.touched) {
+      <div class="error">
+        @if (emailRef.errors?.['required']) { <small>חובה להזין כתובת אימייל.</small> }
+        @if (emailRef.errors?.['email']) { <small>כתובת האימייל אינה תקינה.</small> }
+      </div>
+    }
+  </div>
+
+  <div class="button-group">
+    <button 
+      (click)="updateDonor()" 
+      [disabled]="nameRef.invalid || emailRef.invalid">
+      עדכן תורם
+    </button>
+    
+    <button type="button" (click)="cancel.emit()">ביטול</button>
+  </div>
+</div>

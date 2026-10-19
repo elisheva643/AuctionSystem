@@ -1,0 +1,103 @@
+<div class="page-container">
+  
+  <header class="list-header">
+    <h1>בחירת מתנות</h1>
+    <!-- <div class="search-bar">
+      <input type="text" placeholder="חיפוש מתנה..." />
+    </div> -->
+  </header>
+
+  <div class="category-filters">
+    <button
+      type="button"
+      class="filter-btn"
+      [class.active]="selectedCategory === 'all'"
+      (click)="selectedCategory = 'all'"
+    >
+      כל המתנות
+    </button>
+    <button
+      type="button"
+      class="filter-btn"
+      [class.active]="selectedCategory === 'home'"
+      (click)="selectedCategory = 'home'"
+    >
+      מוצרים לבית
+    </button>
+    <button
+      type="button"
+      class="filter-btn"
+      [class.active]="selectedCategory === 'travel'"
+      (click)="selectedCategory = 'travel'"
+    >
+      תיירות ונופש
+    </button>
+    <button
+      type="button"
+      class="filter-btn"
+      [class.active]="selectedCategory === 'electronics'"
+      (click)="selectedCategory = 'electronics'"
+    >
+      מוצרי חשמל
+    </button>
+    <button
+      type="button"
+      class="filter-btn"
+      [class.active]="selectedCategory === 'kids'"
+      (click)="selectedCategory = 'kids'"
+    >
+      שופינג לילדים
+    </button>
+  </div>
+
+  <div class="gifts-container">
+    <div *ngFor="let gift of filteredGifts; let i = index" class="premium-card">
+      
+      <div *ngIf="isAdmin" class="admin-overlay">
+        <button (click)="selectGift(gift, i)" class="edit-dot">✎</button>
+        <button (click)="deleteGift(gift.id ?? 0)" class="delete-dot">✕</button>
+      </div>
+
+      <div class="image-wrapper">
+        <img
+[src]="gift.imageUrl || '/a.png'"
+          class="main-img"
+          loading="lazy"
+          decoding="async"
+          (error)="onImageError($event)"
+        >
+      </div>
+
+      <div class="card-content">
+        <span class="category-tag">{{ gift.category }}</span>
+        <h3 class="product-title">{{ gift.name }}</h3>
+        <p class="price-label">{{ gift.price }} ₪</p>
+
+        <div class="action-row">
+          <div class="quantity-box">
+            <button (click)="gift.selectedQuantity = (gift.selectedQuantity || 1) - 1" [disabled]="(gift.selectedQuantity || 1) <= 1">-</button>
+            <span>{{ gift.selectedQuantity || 1 }}</span>
+            <button (click)="gift.selectedQuantity = (gift.selectedQuantity || 1) + 1">+</button>
+          </div>
+          
+          <button class="cart-btn" (click)="addToCart(gift)" [disabled]="!currentUserId">
+            הוספה
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="filteredGifts.length === 0" class="empty-state">
+    אין מתנות בקטגוריה הזו כרגע.
+  </div>
+
+  <app-update-gift 
+    *ngIf="selectedGift" 
+    [gift]="selectedGift" 
+    (updated)="onGiftUpdated()" 
+    (cancel)="cancelGiftEdit()"
+    class="floating-modal">
+  </app-update-gift>
+
+</div>

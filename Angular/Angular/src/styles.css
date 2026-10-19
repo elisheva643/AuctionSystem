@@ -1,0 +1,104 @@
+:root {
+  --primary-color: #0b7285;
+  --accent-color: #f97316;
+  --text-dark: #1f2933;
+  --bg-light: #ffffff;
+  --bg-subtle: #f6f7fb;
+  --border-color: rgba(15, 23, 42, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Heebo', 'Assistant', 'Segoe UI', system-ui, sans-serif;
+  color: var(--text-dark);
+  background-color: var(--bg-subtle);
+  direction: rtl;
+}
+
+/* Global Input Styles */
+input,
+select,
+textarea {
+  font-family: inherit;
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background: var(--bg-light);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(11, 114, 133, 0.1);
+}
+
+/* Validation Styles */
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+input.ng-valid.ng-touched,
+select.ng-valid.ng-touched,
+textarea.ng-valid.ng-touched {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.error {
+  color: #ef4444;
+  font-size: 0.85rem;
+  margin-top: 6px;
+  font-weight: 500;
+  display: block;
+}
+
+/* Global Button Styles */
+button {
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 999px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+  box-shadow: 0 10px 20px rgba(11, 114, 133, 0.2);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px rgba(11, 114, 133, 0.25);
+}
+
+.btn-secondary {
+  background: var(--accent-color);
+  color: white;
+  box-shadow: 0 10px 20px rgba(249, 115, 22, 0.2);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px rgba(249, 115, 22, 0.25);
+}

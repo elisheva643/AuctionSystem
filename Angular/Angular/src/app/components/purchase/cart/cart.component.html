@@ -1,0 +1,39 @@
+<div class="cart-sidebar-inner">
+  <div class="cart-header">
+    <h3>🛒 העגלה שלי</h3>
+    <p class="items-count" *ngIf="cart.length > 0">{{ getTotalItems() }} פריטים</p>
+  </div>
+
+  <div *ngIf="cart.length === 0" class="empty-cart-message">
+    <p>העגלה ריקה כרגע</p>
+  </div>
+
+  <div class="cart-items-list">
+    <div *ngFor="let p of cart" class="cart-card-modern">
+      <div class="item-info">
+        <h4>{{ p.gift?.name }}</h4>
+        <p class="line-sub">מחיר יחידה: {{ p.gift?.price ?? 0 }} ₪</p>
+        <div class="qty-row">
+          <button class="qty-btn" (click)="decreaseQuantity(p)">−</button>
+          <span class="qty-value">{{ p.quantity }}</span>
+          <button class="qty-btn" (click)="increaseQuantity(p)">+</button>
+        </div>
+      </div>
+      <div class="item-actions">
+         <span class="item-total-price">{{ (p.gift?.price ?? 0) * p.quantity }} ₪</span>
+         <button class="remove-btn-small" (click)="removeItem(p)">🗑️</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary-card" *ngIf="cart.length > 0">
+    <div class="summary-row">
+      <span>סה"כ לתשלום:</span>
+      <span class="total">{{ getTotal() }} ₪</span>
+    </div>
+    <button class="checkout-btn-primary" (click)="confirmPurchase()" [disabled]="lotteryDone">
+      לתשלום 💳
+    </button>
+    <p class="lottery-msg" *ngIf="lotteryDone">לא ניתן לאשר רכישות אחרי ההגרלה</p>
+  </div>
+</div>

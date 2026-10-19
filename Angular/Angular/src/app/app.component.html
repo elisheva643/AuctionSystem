@@ -1,0 +1,37 @@
+<nav class="top-nav">
+ 
+
+  <div class="nav-center">
+    <div class="nav-links">
+      <a routerLink="/home" routerLinkActive="active">דף בית</a>
+      <a routerLink="/gifts" routerLinkActive="active"> מתנות</a>
+      <a routerLink="/donors" routerLinkActive="active">תורמים</a>
+      <a  routerLink="/winners" routerLinkActive="active">🎉 ההגרלה</a>
+      <a *ngIf="isAdmin" routerLink="/purchases-management" routerLinkActive="active">🛒 ניהול רכישות</a>
+      <a *ngIf="isAdmin" routerLink="/add-donation" routerLinkActive="active">הקצאת תרומה</a>
+    </div>
+  </div>
+
+  <div class="nav-left">
+    <ng-container *ngIf="!isUserLoggedIn()">
+      <a routerLink="/login" class="login-btn-outline">כניסת נרשמים</a>
+    </ng-container>
+    <ng-container *ngIf="!isUserLoggedIn()">
+      <a routerLink="/register" class="login-btn-outline">הרשמה </a>
+    </ng-container>
+    <ng-container *ngIf="isUserLoggedIn()">
+      <!-- <span class="user-welcome">שלום, {{userName}}</span> -->
+      <a (click)="signOut()" class="logout-link">התנתקות</a>
+    </ng-container>
+  </div>
+</nav>
+
+<div class="main-layout-container">
+  <main class="page-content">
+    <section class="app-hero-image" aria-label="תמונת רקע ראשית"></section>
+    <router-outlet></router-outlet>
+  </main>
+  <aside class="sidebar-cart" *ngIf="isUserLoggedIn()">
+    <app-cart></app-cart>
+  </aside>
+</div>

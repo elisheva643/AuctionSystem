@@ -1,0 +1,65 @@
+<div class="page-container">
+  <header class="list-header">
+    <h1>רשימת תורמים</h1>
+    <div class="search-bar">
+      <input
+        type="text"
+        [(ngModel)]="filterName"
+        placeholder="חיפוש לפי שם תורם..."
+        class="search-input"
+      />
+      <button (click)="searchByName()" class="search-btn">חפש</button>
+    </div>
+  </header>
+
+  <div class="donors-container">
+    <div *ngFor="let donor of donors" class="donor-card">
+      <div *ngIf="isAdmin" class="admin-overlay">
+        <button (click)="selectDonor(donor)" class="edit-dot" title="עריכה">✎</button>
+        <button (click)="deleteDonor(donor.id)" class="delete-dot" title="מחיקה">✕</button>
+      </div>
+
+      <div class="donor-info">
+        <h3>{{ donor.name }}</h3>
+        <p class="email-label">{{ donor.email }}</p>
+      </div>
+
+      <div class="donor-actions">
+        <button class="btn-view" (click)="showDonor(donor.id)">הצג מתנות</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="donors.length === 0" class="empty-state">
+    אין תורמים להצגה.
+  </div>
+
+  <!-- Display donor gifts modal -->
+  <div *ngIf="viewDonor" class="donor-details-modal">
+    <div class="modal-overlay" (click)="viewDonor = null"></div>
+    <div class="modal-content">
+      <button class="close-btn" (click)="viewDonor = null">✕</button>
+      <h2>{{ viewDonor.name }}</h2>
+      <p class="email-label">{{ viewDonor.email }}</p>
+
+      <h3>מתנות מקושרות:</h3>
+      <div *ngIf="donorGifts && donorGifts.length > 0" class="gifts-list">
+        <div *ngFor="let gift of donorGifts" class="gift-item">
+          <span class="gift-name">{{ gift.gift?.name }}</span>
+          <span class="quantity-badge">×{{ gift.quantity }}</span>
+        </div>
+      </div>
+      <div *ngIf="!donorGifts || donorGifts.length === 0" class="no-gifts">
+        אין מתנות מקושרות.
+      </div>
+    </div>
+  </div>
+
+  <!-- Update donor modal -->
+  <app-update-donor
+    *ngIf="selectedDonor"
+    [donor]="selectedDonor"
+    (updated)="onDonorUpdated()"
+    (cancel)="selectedDonor = null"
+  ></app-update-donor>
+</div>

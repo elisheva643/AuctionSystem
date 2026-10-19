@@ -1,0 +1,96 @@
+<div class="add-gift-form">
+  <h3>הוסף מתנה</h3>
+
+  <div>
+    <label for="giftName">שם המתנה:</label>
+    <input
+      id="giftName"
+      name="giftName"
+      type="text"
+      [(ngModel)]="giftName"
+      #nameRef="ngModel" 
+      required
+      minlength="2"
+      placeholder="הקלידי שם"
+    />
+    
+    @if (nameRef.invalid && nameRef.touched) {
+      <div class="error">
+        @if (nameRef.errors?.['required']) {
+          <small>חובה להזין שם מתנה.</small>
+        }
+        @if (nameRef.errors?.['minlength']) {
+          <small>שם המתנה חייב להכיל לפחות 2 תווים.</small>
+        }
+      </div>
+    }
+  </div>
+
+  <div>
+    <label for="giftPrice">מחיר:</label>
+    <input
+      id="giftPrice"
+      name="giftPrice"
+      type="number"
+      [(ngModel)]="giftPrice"
+      #priceRef="ngModel"
+      required
+      min="1"
+      placeholder="הקלידי מחיר"
+    />
+    
+    @if (priceRef.invalid && priceRef.touched) {
+      <div class="error">
+        @if (priceRef.errors?.['required']) {
+          <small>חובה להזין מחיר.</small>
+        }
+        @if (priceRef.errors?.['min']) {
+          <small>המחיר חייב להיות גבוה מ-0.</small>
+        }
+      </div>
+    }
+  </div>
+
+  <div>
+    <label for="giftDescription">תיאור:</label>
+    <input
+      id="giftDescription"
+      name="giftDescription"
+      type="text"
+      [(ngModel)]="giftDescription"
+      placeholder="הקלידי תיאור אופציונלי"
+    />
+  </div>
+  <div>
+    <label for="giftCategory">קטגוריה:</label>
+    <input
+      id="giftCategory"
+      name="giftCategory"
+      type="text"
+      [(ngModel)]="giftCategory"
+      #categoryRef="ngModel"
+      required
+      placeholder="למשל: חשמל, נופש, ילדים"
+    />
+    @if (categoryRef.invalid && categoryRef.touched) {
+      <div class="error"><small>חובה להזין קטגוריה.</small></div>
+    }
+  </div>
+
+  <div>
+    <label for="giftImage">URL תמונה:</label>
+    <input
+      id="giftImage"
+      name="giftImage"
+      type="text"
+      [(ngModel)]="giftImageUrl"
+      placeholder="הדביקי קישור לתמונה"
+    />
+  </div>
+
+  <button 
+    (click)="addGift()" 
+    [disabled]="nameRef.invalid || priceRef.invalid">
+    הוסף מתנה
+  </button>
+</div>

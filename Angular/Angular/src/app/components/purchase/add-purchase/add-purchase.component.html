@@ -1,0 +1,61 @@
+<div class="add-purchase-form">
+  <h2>הוספת רכישה</h2>
+
+  <div>
+    <label for="giftId">קוד מתנה:</label>
+    <input 
+      id="giftId"
+      name="giftId"
+      type="number" 
+      [(ngModel)]="purchase.giftId"
+      #giftRef="ngModel"
+      required
+      placeholder="הקלידי קוד מתנה"
+    >
+    @if (giftRef.invalid && giftRef.touched) {
+      <div class="error">
+        @if (giftRef.errors?.['required']) {
+          <small>חובה להזין קוד מתנה.</small>
+        }
+      </div>
+    }
+  </div>
+
+  <br>
+
+  <div>
+    <label for="quantity">כמות:</label>
+    <input 
+      id="quantity"
+      name="quantity"
+      type="number" 
+      min="1" 
+      [(ngModel)]="purchase.quantity"
+      #qtyRef="ngModel"
+      required
+      placeholder="כמות כרטיסים"
+    >
+    @if (qtyRef.invalid && qtyRef.touched) {
+      <div class="error">
+        @if (qtyRef.errors?.['required']) {
+          <small>חובה להזין כמות.</small>
+        }
+        @if (qtyRef.errors?.['min']) {
+          <small>הכמות חייבת להיות לפחות 1.</small>
+        }
+      </div>
+    }
+  </div>
+
+  <br>
+
+  <button 
+  (click)="addPurchase()" 
+  [disabled]="giftRef.invalid || qtyRef.invalid || lotteryDone">
+  הוסף רכישה
+</button>
+
+<div *ngIf="lotteryDone" class="error">
+  לא ניתן לבצע רכישות לאחר ההגרלה 🎉
+</div>
+</div>

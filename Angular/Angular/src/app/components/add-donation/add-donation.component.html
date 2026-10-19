@@ -1,0 +1,70 @@
+<h2>הוספת תרומה</h2>
+
+<form (ngSubmit)="saveDonation()" #donationForm="ngForm" class="donation-form">
+  <div class="section">
+    <label>תורם</label>
+
+    <div class="mode-buttons">
+      <button type="button" (click)="donorMode='existing'">בחירת תורם קיים</button>
+      <button type="button" (click)="donorMode='new'">יצירת תורם חדש</button>
+    </div>
+
+    <div *ngIf="donorMode === 'existing'">
+      <select [(ngModel)]="donation.donorId" name="donorId" required>
+        <option [ngValue]="0" disabled>בחרי תורם</option>
+        <option *ngFor="let donor of donors" [ngValue]="donor.id">
+          {{ donor.name }} ({{ donor.email }})
+        </option>
+      </select>
+    </div>
+
+    <div *ngIf="donorMode === 'new'" class="inline-form">
+      <a
+        class="link-button"
+        [routerLink]="['/add-donor']"
+        [queryParams]="{ returnUrl: '/add-donation' }"
+      >
+        מעבר להוספת תורם חדש
+      </a>
+      <button type="button" (click)="loadDonors()">רענון רשימת תורמים</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <label>מתנה</label>
+
+    <div class="mode-buttons">
+      <button type="button" (click)="giftMode='existing'">בחירת מתנה קיימת</button>
+      <button type="button" (click)="giftMode='new'">יצירת מתנה חדשה</button>
+    </div>
+
+    <div *ngIf="giftMode === 'existing'">
+      <select [(ngModel)]="donation.giftId" name="giftId" required>
+        <option [ngValue]="0" disabled>בחרי מתנה</option>
+        <option *ngFor="let gift of gifts" [ngValue]="gift.id">
+          {{ gift.name }} - {{ gift.price }} ש"ח
+        </option>
+      </select>
+    </div>
+
+    <div *ngIf="giftMode === 'new'" class="inline-form">
+      <a
+        class="link-button"
+        [routerLink]="['/add-gift']"
+        [queryParams]="{ returnUrl: '/add-donation' }"
+      >
+        מעבר להוספת מתנה חדשה
+      </a>
+      <button type="button" (click)="loadGifts()">רענון רשימת מתנות</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <label>כמות</label>
+    <input type="number" [(ngModel)]="donation.quantity" name="quantity" required min="1" />
+  </div>
+
+  <button type="submit" [disabled]="donationForm.invalid || isSaving">
+    {{ isSaving ? 'שומרת...' : 'שמור תרומה' }}
+  </button>
+</form>
